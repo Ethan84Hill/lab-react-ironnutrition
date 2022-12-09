@@ -1,17 +1,24 @@
 import { Card, Col, Button } from 'antd';
+import { useState } from 'react';
+import foods from '../foods.json';
 
 function FoodBox(props) {
+
+    const {index, deleteFood} = props;
+
+    const {name, calories, servings, image} = props.food
+
     return (
         <div>
         <Col>
-            <Card title={props.food.name} style={{ width: 230, height: 300, margin: 10 }}>
-                <img src={props.food.image} height={60} alt="food" />
-                <p>Calories: {props.food.calories}</p>
-                <p>Servings: {props.food.servings}</p>
+            <Card title={name} style={{ width: 230, height: 300, margin: 10 }}>
+                <img src={image} height={60} alt="food" />
+                <p>Calories: {calories}</p>
+                <p>Servings: {servings}</p>
                 <p>
-                <b>Total Calories: {props.food.calories * props.food.servings} </b> kcal
+                <b>Total Calories: {calories * servings} </b> kcal
                 </p>
-            <Button type="primary"> Delete </Button>
+                <Button onClick={() => deleteFood(index)} type="primary"> Delete </Button>
             </Card>
         </Col>
         </div>
